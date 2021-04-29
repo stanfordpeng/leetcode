@@ -1,0 +1,16 @@
+###  1. Find Smallest Letter Greater Than Target
+Stan
+[leetcode](https://leetcode.com/problems/find-smallest-letter-greater-than-target/submissions/)
+使用sort，再找到第一个大于target的letter,如果没找到就循环回去找第一个
+```
+class Solution {
+    public char nextGreatestLetter(char[] letters, char target) {
+        
+        Arrays.sort(letters);
+        for(char letter:letters){
+            if(letter > target) return letter;
+        }
+        return letters[0];
+    }
+}
+```
