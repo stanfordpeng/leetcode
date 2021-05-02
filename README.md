@@ -1,5 +1,5 @@
 # leetcode
-This repository is used to track the learning journey in algrothem
+This repository is used to track the learning journey in algrothm
 ****
 |Contributors|
 |---|
