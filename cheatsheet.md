@@ -248,4 +248,34 @@ class UnionFind {
 
 # segment tree
 
+# More About Google:
+Here's a list of topics I found helpful for Google. These are based on questions I found tagged with Google across LeetCode and conversations with recruiters/interview-experiences.
 
+Topological sort
+DFS/BFS
+2-D Matrix Prefix Sum
+Binary Search over functions
+Quick sort/Quick select
+Merge sort
+Dijkstra/Bellman Ford/ Floyd Warshall/ Kruskals Minimum Spanning Tree
+UnionFind
+Trie
+Min-max Games
+Cycle Detection
+Intervals
+Segment Tree
+KMP
+Bridges/Articulation point/Tarjan SCC
+Euler's Path/Circuit/Hierholzer's Algorithm
+Note that this is more topics than you would expect for other companies. Google really does try to emphasise on DSA questions more than most other companies. Still topics 13 to 16 are (somewhat) optional with it being rarer to see direct questions.
+
+Amazon relies a lot more on design and leadership for SDE-2 onwards.
+Facebook favours implementation speed in DSA with 2 LeetCode Mediums (ideally, both solved with code!) rather than harder questions.
+Google asks LeetCode Mediums and occasionally Hards. It's less rushed than Facebook but expect follow-ups.
+
+A lot of the more obscure topics above like Segment Tree, Bridges, KMP, you can expect them to ask you in follow-up rather than the core questioning absolutely requiring them. So they are sort of optional but definitely leave a good impression in follow-ups.
+
+And they typically don't expect as much (sometimes, zero) code for the follow-ups.
+
+Google also has points for code style so do spend a few hours going through their style code: https://google.github.io/styleguide/javaguide.html
+Again, it's optional brownie points and doesn't matter if you can't solve the base questions. But it's a good guide to follow during work/LeetCode too :)
