@@ -4,6 +4,7 @@ Stan
 Recursion经常与DFS出现一起，因为Recursion经常通过将大的问题分解为多个小问题层层递归到最深的一个问题。backtrack也需要recursion实现，recursion本质是利用了函数栈来实现，问题分解成小问题，每个小问题都放入一个函数栈和单独的scope,使得这种方法既简明又强大：
 Example：
 1. Recursion
+
 leetcode 206. Reverse Linked List
 ```
 public ListNode reverseList(ListNode head) {
@@ -16,6 +17,7 @@ public ListNode reverseList(ListNode head) {
 ```
 
 2. DFS Search
+
 Leetcode / 力扣 695. Max Area of Island (Medium)
 
 [[0,0,1,0,0,0,0,1,0,0,0,0,0],
