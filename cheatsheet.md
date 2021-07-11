@@ -155,3 +155,86 @@ private boolean hasCycle(boolean[] globalMarked, boolean[] localMarked, List<Int
 }
 
 ```
+
+# Union Find
+
+在计算机科学中，并查集（英文：Disjoint-set data structure，直译为不交集数据结构）是一种数据结构，用于处理一些不交集（Disjoint sets，一系列没有重复元素的集合）的合并及查询问题。并查集支持如下操作：
+
+查询：查询某个元素属于哪个集合，通常是返回集合内的一个“代表元素”。这个操作是为了判断两个元素是否在同一个集合之中。
+合并：将两个集合合并为一个。
+添加：添加一个新集合，其中有一个新元素。添加操作不如查询和合并操作重要，常常被忽略。
+由于支持查询和合并这两种操作，并查集在英文中也被称为联合-查找数据结构（Union-find data structure）或者合并-查找集合（Merge-find set）。
+
+吃鸡跟随问题就是典型的并查集问题：
+
+Example：
+685. 冗余连接 II
+```
+class Solution {
+    public int[] findRedundantDirectedConnection(int[][] edges) {
+        int nodesCount = edges.length;
+        UnionFind uf = new UnionFind(nodesCount + 1);
+        int[] parent = new int[nodesCount + 1];
+        for (int i = 1; i <= nodesCount; ++i) {
+            parent[i] = i;
+        }
+        int conflict = -1;
+        int cycle = -1;
+        for (int i = 0; i < nodesCount; ++i) {
+            int[] edge = edges[i];
+            int node1 = edge[0], node2 = edge[1];
+            if (parent[node2] != node2) {
+                conflict = i;
+            } else {
+                parent[node2] = node1;
+                if (uf.find(node1) == uf.find(node2)) {
+                    cycle = i;
+                } else {
+                    uf.union(node1, node2);
+                }
+            }
+        }
+        if (conflict < 0) {
+            int[] redundant = {edges[cycle][0], edges[cycle][1]};
+            return redundant;
+        } else {
+            int[] conflictEdge = edges[conflict];
+            if (cycle >= 0) {
+                int[] redundant = {parent[conflictEdge[1]], conflictEdge[1]};
+                return redundant;
+            } else {
+                int[] redundant = {conflictEdge[0], conflictEdge[1]};
+                return redundant;
+            }
+        }
+    }
+}
+
+class UnionFind {
+    int[] ancestor;
+
+    public UnionFind(int n) {
+        ancestor = new int[n];
+        for (int i = 0; i < n; ++i) {
+            ancestor[i] = i;
+        }
+    }
+
+    public void union(int index1, int index2) {
+        ancestor[find(index1)] = find(index2);
+    }
+
+    public int find(int index) {
+        if (ancestor[index] != index) {
+            ancestor[index] = find(ancestor[index]);
+        }
+        return ancestor[index];
+    }
+}
+
+作者：LeetCode-Solution
+链接：https://leetcode-cn.com/problems/redundant-connection-ii/solution/rong-yu-lian-jie-ii-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+```
