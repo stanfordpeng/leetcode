@@ -1,4 +1,7 @@
 ## 1. [Serialization](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/) 
+
+Stan
+
 Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
 
 Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
@@ -82,4 +85,140 @@ public class Codec {
 // Codec ser = new Codec();
 // Codec deser = new Codec();
 // TreeNode ans = deser.deserialize(ser.serialize(root));
+```
+
+## 2. [Min Stack](https://leetcode.com/problems/min-stack/solution/)
+
+Stan 
+
+```
+/**
+ * initialize your data structure here.
+ */
+var MinStack = function() {
+    this.store = [];
+    this.minStore = [];
+    // var min ;
+    // var minIndex;
+    
+};
+
+/** 
+ * @param {number} val
+ * @return {void}
+ */
+MinStack.prototype.push = function(val) {
+    if(this.minStore.length == 0){
+        this.minStore.push(val);
+    }else{
+        let min = this.minStore[this.minStore.length -1];
+        if(val < min ){
+            this.minStore.push(val);
+        }else{
+            this.minStore.push(min);
+        }
+    }
+    this.store.push(val);
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function() {
+    this.store.pop();
+    this.minStore.pop();
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function() {
+    return this.store[this.store.length - 1];
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function() {
+    return this.minStore[this.minStore.length-1];
+};
+
+/** 
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(val)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */
+
+```
+## 3. [LRU Cache](https://leetcode.com/problems/lru-cache/solution/)
+
+Stan
+
+```
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
+class LRUCache {
+    Map<Integer,Integer> map = new HashMap<>();
+    
+    LinkedHashSet<Integer> keysOrder = new LinkedHashSet<>();
+    
+    int capacity;
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+    }
+    
+    public int get(int key) {
+        System.out.println(key);
+        if(map.containsKey(key)){
+            keysOrder.remove(new Integer(key));
+            keysOrder.add(key);
+            return map.get(key);
+        }
+        
+
+        
+        return -1;
+    }
+    
+    public void put(int key, int value) {
+        
+        if(map.containsKey(key)){
+            System.out.println("Update: "+key);
+            map.put(key,value);
+            keysOrder.remove(new Integer(key));
+            keysOrder.add(key);
+            
+        }else{
+            // System.out.println("put: " + key);
+            keysOrder.add(key);
+            int size = keysOrder.size();
+            if(size>capacity){
+                System.out.println("added over capacity: " + key);
+                Iterator<Integer> itr = keysOrder.iterator();
+                Integer discarded = itr.next();
+                // System.out.println("discarded: "+discarded);
+                keysOrder.remove(discarded);
+                map.remove(discarded);
+            }
+            map.put(key,value);
+            
+        }
+        
+        
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
 ```
