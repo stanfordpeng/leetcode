@@ -45,3 +45,72 @@ class Solution {
 ```
 Union Find solution:
 
+```
+function DJSet(n) {
+    let parent = Array(n).fill(-1);
+    return { find, union, getParent }
+    function find(x) {
+        return parent[x] < 0 ? x : parent[x] = find(parent[x]);
+    }
+    function union(x, y) {
+        x = find(x);
+        y = find(y);
+        if (x != y) {
+            if (parent[x] < parent[y])[x, y] = [y, x];
+            parent[x] += parent[y];
+            parent[y] = x;
+        }
+        return x == y;
+    }
+    function getParent() {
+        return parent;
+    }
+}
+
+const countSubIslands = (g1, g2) => {
+    let n = g1.length;
+    let m = g1[0].length;
+    let ds1 = new DJSet(n * m);
+    let ds2 = new DJSet(n * m);
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+            if (i + 1 < n && g1[i][j] == 1 && g1[i + 1][j] == 1) {
+                ds1.union(i * m + j, (i + 1) * m + j);
+            }
+            if (j + 1 < m && g1[i][j] == 1 && g1[i][j + 1] == 1) {
+                ds1.union(i * m + j, i * m + j + 1);
+            }
+            if (i + 1 < n && g2[i][j] == 1 && g2[i + 1][j] == 1) {
+                ds2.union(i * m + j, (i + 1) * m + j);
+            }
+            if (j + 1 < m && g2[i][j] == 1 && g2[i][j + 1] == 1) {
+                ds2.union(i * m + j, i * m + j + 1);
+            }
+        }
+    }
+    let d = Array(n * m).fill(-1);
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+            if (g2[i][j] == 0) continue;
+            let parent2 = ds2.find(i * m + j);
+            if (g1[i][j] == 0 || d[parent2] == -2) {
+                d[parent2] = -2;
+                continue;
+            }
+            let parent1 = ds1.find(i * m + j);
+            if (d[parent2] == -1) {
+                d[parent2] = parent1;
+            } else if (d[parent2] != parent1) {
+                d[parent2] = -2;
+            }
+        }
+    }
+    let res = 0;
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < m; j++) {
+            if (d[i * m + j] >= 0) res++;
+        }
+    }
+    return res;
+};
+```
