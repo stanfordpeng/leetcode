@@ -19,7 +19,7 @@ Since most content is written in MD file, an markdown Vscode plug-in is suggeste
 
 ## MR message format:
 Add git hook reges to enforce below naming convention
-<li> FOMRAT: Change format of files or refactoring the structure
+<li> FORMAT: Change format of files or refactoring the structure
 <li> DESIGN: Design knowledge description and sharing or add a new design topic
 <li> ALGO: New algrithm question or add a new algorithm topic
 <li> KNOWLEDGE: Anything else which cannot be classified goes here
