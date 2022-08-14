@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Need enterprise github to set Pre-Rceive hook
+valid_branch_regex="^(main|(format\\/|design\\/|algo\\/|algorithm\\/|knowledge\\/)[a-zA-Z0-9._-]+)$"
+valid_msg_regex="(FORMAT|DESIGN|ALGO|ALGORITHM|KNOWLEDGE):[[:space:]][a-zA-Z0-9.,_][a-zA-Z0-9.,_\\s]+"
+zero_commit="0000000000000000000000000000000000000000"
+
+while read old_value new_value ref_name; do
+  # Only check new branches ($oldrev is zero commit), do not block tags
+  if [[ $old_value == $zero_commit && $ref_name =~ ^refs/origin/ ]]; then
+    # Check if the branch name conforms to standards
+    if [[ ! $ref_name =~ $valid_branch_regex ]]; then
+      echo "Blocking creation of new branch $ref_name because it does not conform to the standard: $valid_branch_regex"
+      echo "Please refer to this page to learn about naming standards: README"
+      exit 1
+    fi
+    # Check each commit subject (except Merge commits) to ensure they conform to naming standards
+    IFS=""
+    for commit_subject in $(git log --format="%s" old_value..new_value | grep -v Merge)
+    do
+      if [[ ! $commit_subject =~ $valid_msg_regex ]]; then
+        echo "Blocking push because this commit does not conform to naming standards: $commit_subject"
+        echo "Please refer to this page to learn about naming standards: README"
+        exit 1
+      fi
+    done
+  fi
+done
+exit 0

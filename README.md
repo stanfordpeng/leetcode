@@ -19,13 +19,13 @@ Since most content is written in MD file, an markdown Vscode plug-in is suggeste
 
 ## MR message format:
 Add git hook reges to enforce below naming convention
-<li> Format: Change format of files or refactoring the structure
-<li> Design: Design knowledge description and sharing or add a new design topic
-<li> Algorithm: New algrithm question or add a new algorithm topic
-<li> Knowledge: Anything else which cannot be classified goes here
+<li> FOMRAT: Change format of files or refactoring the structure
+<li> DESIGN: Design knowledge description and sharing or add a new design topic
+<li> ALGO: New algrithm question or add a new algorithm topic
+<li> KNOWLEDGE: Anything else which cannot be classified goes here
 
 ## branch naming convention:
-format/Branch-name
-design/Branch-name
-algorithm/Branch-name
-knowledge/Branch-name
+<li> format/Branch-name
+<li> design/Branch-name
+<li> algorithm/Branch-name
+<li> knowledge/Branch-name

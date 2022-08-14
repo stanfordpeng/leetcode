@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# This is a client side git hook
+# For it to function, you must copy it into your local .git/hooks/ folder, with the below command (on Mac)
+# cp .githooks/commit-msg  .git/hooks/
+
+commit_msg=$(cat "${1}")
+
+valid_msg_regex="(FORMAT|DESIGN|ALGO|ALGORITHM|KNOWLEDGE):[[:space:]][a-zA-Z0-9.,_][a-zA-Z0-9.,_\\s]+"
+
+message="There is something wrong with your commit message. Commit message in this project must adhere to this contract: $valid_msg_regex. Your commit will be rejected. You should fix your commit message and try again. Read this page for naming conventions: README file"
+
+if [[ ! $commit_msg =~ $valid_msg_regex ]]
+then
+    echo "$message"
+    echo "Your commit message: $commit_msg"
+    exit 1
+fi
+
+exit 0
