@@ -10,5 +10,22 @@ This repository is used to track the learning journey in algrothm
 |Liang|
 ****
 
-# Naming:
-From 2021-05-12, the file name should be appended with either single or double so that we know whether it is a check day, :)!
+# Overview:
+From 2022-08-14, all algorithm questions should be added to the corresponding file with correct topic such as Recursion.<br>
+<br>
+Meanwhile, maintainers need to send a MR with at least one approval to add the new change to the main branch and more attentions should be given to the format and readability so that learners can eaily refresh their memory or something whey have learnt.<br>
+
+Since most content is written in MD file, an markdown Vscode plug-in is suggested as well as git plug-in which can help you "Git blame" lol.
+
+## MR message format:
+Add git hook reges to enforce below naming convention
+<li> Format: Change format of files or refactoring the structure
+<li> Design: Design knowledge description and sharing or add a new design topic
+<li> Algorithm: New algrithm question or add a new algorithm topic
+<li> Knowledge: Anything else which cannot be classified goes here
+
+## branch naming convention:
+format/Branch-name
+design/Branch-name
+algorithm/Branch-name
+knowledge/Branch-name
