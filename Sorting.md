@@ -178,3 +178,93 @@ public class Solution {
 
 
 ```
+### [QuickSort-divide&conquer](https://leetcode.com/problems/sort-list/)
+
+#### Go:
+```
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+
+// Time out so we have to devide and conquer first, then use dummy as head to insert
+// time: (1 + 2 + 3 + .. + n) = (1+n)/2 * n = 1/2 * n + 1/2 * n^2 = n + n^2
+
+func sortList(head *ListNode) *ListNode {
+    if head == nil || head.Next == nil {
+        return head
+    }
+       
+    //More than 1 node: 
+    result := ListNode {
+        Val: head.Val,
+        Next: nil,
+    }
+    //store result referent
+    dummy := ListNode {
+        Next : &result,
+    }
+    
+    p1 := head.Next
+    for p1 != nil {
+        //find the least value greater than current val
+        index:=dummy.Next
+        var prev = &dummy
+        for index != nil && index.Val < p1.Val  {
+                prev = index
+                index=index.Next
+        }
+        
+
+        //1.back up p1 and move to next
+        toInsert := p1
+        p1 = p1.Next
+        
+        //insert after finding the exact index
+        prev.Next = toInsert
+        toInsert.Next = index
+    }
+    
+    return dummy.Next
+    
+}
+
+//Divde, sort and merge nlog(n): deivide log(n) times, merge using time n for each time
+func sortList(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+
+	slow := head
+	fast := head.Next
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+
+	nextHalfHead := slow.Next
+	slow.Next = nil
+	l1 := sortList(head)
+	l2 := sortList(nextHalfHead)
+
+	dummy := &ListNode{}
+	cur := dummy
+	for l1 != nil || l2 != nil {
+		if l1 == nil || (l2 != nil && l1.Val >= l2.Val) {
+			cur.Next = l2
+			l2 = l2.Next
+		} else {
+			cur.Next = l1
+			l1 = l1.Next
+		}
+
+		cur = cur.Next
+	}
+
+	return dummy.Next
+}
+```
+The first solution failed due to time complexity
