@@ -23,3 +23,24 @@ func backtrack(stringList *[]string, s string, open int,  end int,  max int) {
     }
 }
 ```
+### [78. Subsets](https://leetcode.com/problems/subsets/)
+Kang
+```
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
+    var res = [];
+    res.push([]);
+    for( var i = 0 ; i < nums.length ; i++){
+        var reslen = res.length;
+        for(var j = 0 ; j < reslen ; j++ ){
+            var clist = res[j].slice();
+            clist.push(nums[i]);
+            res.push(clist);
+        }
+    }
+    return res;
+};
+```
