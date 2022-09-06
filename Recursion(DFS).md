@@ -114,3 +114,75 @@ const countSubIslands = (g1, g2) => {
     return res;
 };
 ```
+### [17. Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+Kang
+```
+/**
+ * @param {string} digits
+ * @return {string[]}
+ */
+var letterCombinations = function(digits) {
+    if(digits.length === 0){
+        return [];
+    }
+    var res = [];
+    var map = {
+        '2': ["a","b","c"],
+        '3': ["d","e","f"],
+        '4': ["g","h","i"],
+        '5': ["j","k","l"],
+        '6': ["m","n","o"],
+        '7': ["p","q","r","s"],
+        '8': ["t","u","v"],
+        '9': ["w","x","y","z"]
+    };
+    var len = digits.length;
+    for(var letters of map[digits.charAt(0)]){
+        { build(letters, 0); }
+    }
+    function build(str, index){
+        if ( index+1 == len ){
+            res.push(str);
+        } else {
+            var letters = map[digits.charAt(index+1)];
+            for(var letter of letters){
+                build(str+letter, index+1);
+            }
+        }
+    }
+    return res;
+};
+```
+
+### [39. Combination Sum](https://leetcode.com/problems/combination-sum/)
+Kang
+```
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum = function(candidates, target) {
+    candidates.sort(function(a, b){return a - b});
+    var len = candidates.length;
+    var res = [];
+    for (var i = 0; i < len ; i++){
+        find(i, 0, []);
+    }
+    function find(index, sum, list){
+        var cand = candidates[index];
+        list.push(cand);
+        sum += cand;
+        if ( sum == target ){
+            res.push(list);
+        }
+        if ( sum < target ){
+            for (var i = index ; i < len ; i++) {
+                var newList = list.slice();
+                find(i , sum, newList);
+            }
+        }
+    }
+    return res;
+};          
+```
