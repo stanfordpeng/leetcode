@@ -32,3 +32,51 @@ func longestNiceSubstring(s string) string {
 }
 
 ```
+### [Majority Element](https://leetcode.com/problems/majority-element)
+
+```
+
+func majorityElement(nums []int) int {
+    length:=len(nums)
+    if length < 3 {
+        return nums[0]
+    }
+    count:=make(map[int]int)
+    max := nums[0]
+    for i := range nums {
+        _, exists := count[nums[i]]
+        if exists {
+            count[nums[i]] ++
+        } else {
+            count[nums[i]] = 1
+        }
+        if count[nums[i]] > count[max] {
+            max = nums[i]
+        }
+    }
+    
+
+    return max
+}
+
+
+```
+
+Boyer-Moore Voting Algorithm
+```
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count = 0;
+        Integer candidate = null;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
+    }
+}
+```
