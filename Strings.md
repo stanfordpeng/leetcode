@@ -56,3 +56,26 @@ public class Solution {
 }
 
 ```
+
+### [14. Longest Common Prefix](https://leetcode.com/problems/longest-common-prefix/)
+```
+func longestCommonPrefix(strs []string) string {
+    index:=0
+    for {
+        var c byte
+        if index < len(strs[0])  {
+            c =  strs[0][index]
+        }  else {
+            return strs[0][0:index]
+        } 
+        
+        for _, s:= range strs {
+            if index >= len(s) || s[index] != c {
+                return s[0:index]
+            }
+        }
+        index++
+    }
+}
+
+```
