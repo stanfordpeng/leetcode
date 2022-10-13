@@ -23,7 +23,7 @@ func mergeKLists(lists []*ListNode) *ListNode {
     for true {
         for i:=0; i < size; i++ {
             curPointer := lists[i]
-            
+            // dot in golang can dereference struct
             if ( minPointer==nil || (curPointer != nil && curPointer.Val < minPointer.Val)) {
                 minPointer = curPointer
                 pos=i
