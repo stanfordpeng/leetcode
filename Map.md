@@ -21,7 +21,9 @@ var topKFrequent = function(nums, k) {
       list.push(x);
     }
     
-    // Can achieve O(n) with bucket sort https://leetcode.com/problems/top-k-frequent-elements/discuss/669782/JavaScript-No-Sorting-O(N)-Time
+    // O(n log n) time, 
+    // Can achieve O(n) with bucket sort 
+    // https://leetcode.com/problems/top-k-frequent-elements/discuss/669782/JavaScript-No-Sorting-O(N)-Time
     list.sort((a, b) => a[1] < b[1] ? 1 : -1);
     var res = [];
     for ( var i = 0 ; i < k ; i++ ){
