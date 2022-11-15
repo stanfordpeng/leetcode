@@ -94,3 +94,36 @@ func strStr(haystack string, needle string) int {
     
 }
 ```
+
+### [38. Count and Say](https://leetcode.com/problems/count-and-say/)
+```
+func countAndSay(n int) string {
+    //dp
+    // dp := make([]int,n)
+    
+    //recursive
+    var result = "1"
+    var count = 1
+    for count<n {
+        var sb strings.Builder
+        cur:=rune(result[0])
+        amount:=0
+        for _,r := range result {
+            if r==cur {
+                amount++
+            }else {
+                sb.WriteString(strconv.Itoa(amount))
+                sb.WriteRune(cur)
+                cur=r
+                amount=1
+            }
+        }
+        sb.WriteString(strconv.Itoa(amount))
+        sb.WriteRune(cur)
+        result=sb.String()
+        count++
+    }
+    return result
+}
+
+```
