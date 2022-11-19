@@ -91,3 +91,64 @@ func swap(nums []int, i int, j int){
     nums[j] = temp  
 }
 ```
+
+### [36. Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)
+```
+func isValidSudoku(board [][]byte) bool {
+    
+    // var row = makeTwoDimentionalArray()
+    // var col = makeTwoDimentionalArray()
+    // var grid = makeTwoDimentionalArray()
+    
+    // var row = make([][10]bool, 9)
+    // var col = make([][10]bool, 9)
+    // var grid = make([][10]bool, 9)
+    
+    // var row = [9][10]bool{}
+    // var col = [9][10]bool{}
+    // var grid = [9][10]bool{}
+    
+    var row [9][10]bool
+    var col [9][10]bool
+    var grid[9][10]bool
+    for i:=0; i < 9; i ++ {
+        for j:=0; j < 9; j ++ {
+            if board[i][j] == '.' {
+				continue
+			}
+            value:=board[i][j] - '0'
+            // fmt.Println(value)
+            if row[i][value] == true {
+                return false
+            }
+            row[i][value] = true
+            
+            if col[j][value] == true {
+                return false
+            }
+            col[j][value] = true
+            
+            gridIndex:= 3*(j/3) + i/3
+            
+            if grid[gridIndex][value] == true {
+                return false
+            }
+            grid[gridIndex][value] = true
+       }
+    }
+    
+    return true
+}
+
+
+// for recording existence
+func makeTwoDimentionalArray() [][]bool {
+	var twoD [][]bool
+	for i := 0; i < 9; i++ {
+		oneD := make([]bool, 10)
+		twoD = append(twoD, oneD)
+	}
+
+	return twoD
+}
+```
