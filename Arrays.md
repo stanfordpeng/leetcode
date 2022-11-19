@@ -91,3 +91,38 @@ func swap(nums []int, i int, j int){
     nums[j] = temp  
 }
 ```
+
+
+### [48. Rotate Image](https://leetcode.com/problems/rotate-image/)
+```
+func rotate(matrix [][]int)  {
+    var length = len(matrix)
+    
+    if length == 1 {
+        return 
+    }
+    
+    // transpose matrix[i][j] = matrix[j][i]
+    for i:= 0; i < length ; i++ {
+        for j:=i+1 ; j < length ; j ++  {
+            temp:=matrix[i][j]
+            matrix[i][j] = matrix[j][i]
+            matrix[j][i] = temp
+        }
+    }
+    
+    //reverse
+    half:=length/2
+    
+    for i:=0; i < length; i ++ {
+        for j:=0; j < half; j ++ {
+            temp:=matrix[i][j]
+            matrix[i][j] = matrix[i][length-1-j]
+            matrix[i][length-1-j] = temp
+        }
+    }
+
+    
+}
+
+```
