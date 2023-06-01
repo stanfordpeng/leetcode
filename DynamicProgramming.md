@@ -2,7 +2,7 @@
 
 DP--hard
 Recurrence relation：
-For n, (a)b a+b+1=n, a,b represents the valid combination when it is either n or b
+For n, (a)b a+b+1=n, a,b represents the valid combination when it is a or b
 ```
 
 func generateParenthesis(n int) []string {
