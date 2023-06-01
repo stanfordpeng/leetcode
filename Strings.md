@@ -79,6 +79,26 @@ func longestCommonPrefix(strs []string) string {
 }
 
 ```
+In Java, use label:
+```
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        StringBuffer sb = new StringBuffer("");
+        label:
+        for (int i = 0;i<strs[0].length();i++){
+            var c=strs[0].charAt(i);
+            for (int j = 0; j < strs.length; j++) {
+                if ( strs[j].length() < i+1 || c != strs[j].charAt(i) ) {
+                    break label;
+                }
+            }
+            sb.append(c);
+        }
+        return sb.toString();
+
+    }
+}
+```
 
 ### [28. Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/)
 ```
